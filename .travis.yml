@@ -1,2 +1,5 @@
+language: c
 install: mkdir -p src/obj bin
 script: make
+after_script:
+    - echo "adicionar aqui testes"
