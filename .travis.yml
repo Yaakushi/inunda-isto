@@ -1,1 +1,2 @@
-install: make
+install: mkdir -p src/obj bin
+script: make
