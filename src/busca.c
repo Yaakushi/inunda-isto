@@ -117,3 +117,32 @@ void iterativedepthsearch(struct Mapa *mapa) {
 		curmax++;
 	}
 }
+
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+// 
+// BEST-FIRST SEARCH
+// Usando 3 heurísticas:
+// - Menor distancia de Manhattan até o ponto (N,M).
+// - Cor com maior número de posicoes diretamente adjacentes (4-vizinhanca)
+// - Movimento que "incorpora" a maior quantidade de posicoes
+//
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+
+void 
+
+void bestfirstsearch(struct Mapa *mapa) {
+	struct Mapa *searchmap = copymapa(mapa);
+	while(!mapsolved(searchmap)) {
+		int shortestPath = shortPathToDiagonal(searchmap),
+			mostSquaresOnPerimeter = topColorOnPerimeter(searchmap),
+			mostSquaresEngulfed = topAreaAround(searchmap);
+		if(shortestPath == mostSquaresOnPerimeter || 
+			shortestPath == mostSquaresEngulfed ||
+			mostSquaresOnPerimeter == mostSquaresEngulfed) {
+			
+		}
+
+	}
+}
