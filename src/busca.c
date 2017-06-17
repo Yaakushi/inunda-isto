@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "heuristic.h"
 #include "busca.h"
 
 void printDebug(tfronteira *fronteira, int *solution, int solsize) {
@@ -129,8 +130,6 @@ void iterativedepthsearch(struct Mapa *mapa) {
 //
 // ---------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------
-
-void 
 
 void bestfirstsearch(struct Mapa *mapa) {
 	struct Mapa *searchmap = copymapa(mapa);
