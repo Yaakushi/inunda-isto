@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "heuristic.h"
 #include "busca.h"
+#include "heuristics.h"
 
 void printDebug(tfronteira *fronteira, int *solution, int solsize) {
 	printf("* [DEBUG] Tentando solucao [");
@@ -132,15 +133,21 @@ void iterativedepthsearch(struct Mapa *mapa) {
 // ---------------------------------------------------------------------------------------
 
 void bestfirstsearch(struct Mapa *mapa) {
-	struct Mapa *searchmap = copymapa(mapa);
-	while(!mapsolved(searchmap)) {
-		int shortestPath = shortPathToDiagonal(searchmap),
-			mostSquaresOnPerimeter = topColorOnPerimeter(searchmap),
-			mostSquaresEngulfed = topAreaAround(searchmap);
-		if(shortestPath == mostSquaresOnPerimeter || 
-			shortestPath == mostSquaresEngulfed ||
-			mostSquaresOnPerimeter == mostSquaresEngulfed) {
-			
+	int reachedBottomRight = 0;
+	int *solucao = NULL;
+	int lensol = 0;
+	while(!mapsolved(mapa)) {
+		if(!reachedBottomRight) {
+			int shortestPath = shortestPathToDiagonal(mapa);
+			if(shortestPath == 0) reachedBottomRight = 1;
+			else  {
+				solucao = realloc(sol, sizeof(int) * (lensol + 1));
+				solucao[lensol] = shortestPath;
+				pintamapa(mapa, shortestPath);
+			}
+		} else {
+			int mostSquaresOnPerimeter = mostPopularColorOnPerimeter(map);
+			//int mostSquaresEngulfed = colorWithMostAreaAround(mapa);
 		}
 
 	}
