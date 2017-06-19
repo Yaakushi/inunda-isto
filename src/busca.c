@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "heuristic.h"
+#include <unistd.h>
 #include "busca.h"
 #include "heuristics.h"
 
@@ -139,16 +139,39 @@ void bestfirstsearch(struct Mapa *mapa) {
 	while(!mapsolved(mapa)) {
 		if(!reachedBottomRight) {
 			int shortestPath = shortestPathToDiagonal(mapa);
+			//printf("* It %d. Sol = %d.\n", lensol, shortestPath);
 			if(shortestPath == 0) reachedBottomRight = 1;
 			else  {
-				solucao = realloc(sol, sizeof(int) * (lensol + 1));
+				solucao = realloc(solucao, sizeof(int) * (lensol + 1));
 				solucao[lensol] = shortestPath;
 				pintamapa(mapa, shortestPath);
+				lensol++;
 			}
 		} else {
-			int mostSquaresOnPerimeter = mostPopularColorOnPerimeter(map);
-			//int mostSquaresEngulfed = colorWithMostAreaAround(mapa);
+			int mostSquaresOnPerimeter = mostPopularColorOnPerimeter(mapa);
+			//printf("# It %d. Sol = %d.\n", lensol, mostSquaresOnPerimeter);
+			//if(lensol > 50) sleep(1);
+			//if(lensol == 16) {
+			//	printmapa(mapa);
+			//	printf("%d\n", lensol);
+			//	for(int i = 0; i < lensol; i++) {
+			//		printf("%d", solucao[i]);
+			//		if(i != lensol - 1) printf(" ");
+			//		else printf("\n");
+			//	}
+			//	return;
+			//}
+			pintamapa(mapa, mostSquaresOnPerimeter);
+			solucao = realloc(solucao, sizeof(int) * (lensol + 1));
+			solucao[lensol] = mostSquaresOnPerimeter;
+			lensol++;
 		}
-
 	}
+	printf("%d\n", lensol);
+	for(int i = 0; i < lensol; i++) {
+		printf("%d", solucao[i]);
+		if(i != lensol - 1) printf(" ");
+		else printf("\n");
+	}
+	free(solucao);
 }

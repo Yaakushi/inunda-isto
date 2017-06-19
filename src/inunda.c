@@ -7,6 +7,7 @@
 int main() {
 	struct Mapa *mapa = loadmapa();
 	//breadthfirstsearch(mapa);
-	iterativedepthsearch(mapa);
+	//iterativedepthsearch(mapa);
+	bestfirstsearch(mapa);
 	return 0;
 }

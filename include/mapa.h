@@ -6,6 +6,7 @@ struct Mapa {
 	int ncolunas;
 	int ncores;
 	int **colormap;
+	int **isflooded;
 };
 
 struct Mapa *newmapa(int nlinhas, int ncolunas, int ncores);
@@ -19,6 +20,8 @@ void printmapa(struct Mapa *mapa);
 void pintamapa(struct Mapa *mapa, int color);
 
 void pinta(struct Mapa *mapa, int color, int x, int y, int bg);
+
+void marcarInundacao(struct Mapa *mapa, int color, int x, int y);
 
 int mapsolved(struct Mapa *mapa);
 

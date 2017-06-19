@@ -7,7 +7,7 @@ OUTDIR=bin
 LIBS=
 _DEPS=mapa.h fronteira.h busca.h heuristics.h
 DEPS=$(patsubst %,$(INCDIR)/%,$(_DEPS))
-_OBJ=mapa.o fronteira.o heuristics busca.o inunda.o
+_OBJ=mapa.o fronteira.o heuristics.o busca.o inunda.o
 OBJ=$(patsubst %,$(OBJDIR)/%,$(_OBJ))
 
 .PHONY: all directories clean
@@ -25,4 +25,4 @@ $(OUTDIR)/inunda: $(OBJ)
 
 
 clean:
-	rm -rf $(OBJDIR)/*.o *~ *.swp core $(INCDIR)/*~ $(INCDIR)/*.swp
+	rm -rf $(OBJDIR)/*.o $(SRCDIR)/*~ $(SRCDIR)/*.swp core $(INCDIR)/*~ $(INCDIR)/*.swp

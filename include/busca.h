@@ -10,4 +10,6 @@ void breadthfirstsearch(struct Mapa *mapa);
 
 void iterativedepthsearch(struct Mapa *mapa);
 
+void bestfirstsearch(struct Mapa *mapa);
+
 #endif
